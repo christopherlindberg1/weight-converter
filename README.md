@@ -20,7 +20,7 @@ Must-requirements:
 
 Should-requirements:
 * Refactor Storage class. Should a more dynamic method be used to set values?
-* Improving architecture so that JS and HTML doesn't have to bee hardcoded if new weight units are added. Ideally new units should only be added in on place.
+* Improving architecture so that JS and HTML doesn't have to bee hardcoded if new weight units are added. Ideally new units should only be added in one place.
 
 Want-requirements:
 * Better exception handling. Throw more exceptions where needed to make sure that the script stops as soon as something isn't as excpected (e.g. faulty input to method).
