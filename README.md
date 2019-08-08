@@ -24,3 +24,4 @@ Should-requirements:
 
 Want-requirements:
 * Better exception handling. Throw more exceptions where needed to make sure that the script stops as soon as something isn't as excpected (e.g. faulty input to method).
+* Can the convert-methods in the Convert class be structured in a better way? The amount of code grows exponentially to the amount of units atm.
