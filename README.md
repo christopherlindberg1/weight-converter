@@ -16,6 +16,7 @@ Structuring the architecture in a loosly coupled way. I tried to implement the m
 Must-requirements:
 * Add functionality for filtering results
 * Better style for results
+* Host website live
 
 Should-requirements:
 * Refactor Storage class. Should a more dynamic method be used to set values?
