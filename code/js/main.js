@@ -6,7 +6,8 @@ const form = document.querySelector("#form");
 const selectUnit = document.querySelector("#unit");
 const amount = document.querySelector("#amount");
 const conversionInfo = document.querySelector("#conversion-info");
-const resultBoxes = document.querySelectorAll(".conversion-box");
+const conversionWrapper = document.querySelector("#conversion-wrapper");
+const conversionResultBoxes = document.querySelectorAll(".conversion-box");
 
 
 
@@ -36,8 +37,6 @@ class Storage
     static setSorting(sorting) {
         window.localStorage.setItem("sorting", JSON.stringify(sorting));
     }
-
-    // Have one more dynamic setItem-method instead?
 }
 
 
@@ -65,19 +64,15 @@ class UI
     }
 
     static showConversionResults(conversionResults) {
-        conversionInfo.style.display = "block";
         conversionInfo.textContent = `${conversionResults.amount} ${conversionResults.from} is equal to`;
-        resultBoxes.forEach(box => {
-            box.style.display = "block";
+        conversionResultBoxes.forEach(box => {
             box.children[0].innerHTML = `${conversionResults.results[box.children[0].id]} ${box.children[0].id}`;
         });
+        conversionWrapper.style.display = "block";
     }
 
     static hideContent() {
-        conversionInfo.style.display = "none";
-        resultBoxes.forEach(box => {
-            box.style.display = "none";
-        });
+        conversionWrapper.style.display = "none";
     }
 }
 

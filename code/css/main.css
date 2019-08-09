@@ -38,11 +38,15 @@ input, select {
     box-shadow: 0px 0px 2px #bbb;
 }
 
+#conversion-wrapper {
+    display: none;
+}
+
 .conversion-box {
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 6px;
-    display: none;
+    /* display: none; */
 }
 
 .conversion-result {
