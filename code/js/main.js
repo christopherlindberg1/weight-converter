@@ -15,6 +15,12 @@ let conversionResultBoxes; // Gets initialized in Init class
 
 // ================== Helper elements ================== //
 const units = ["kilogram", "gram", "pound", "ounce"].sort();
+const conversionRatioToKg = {
+    "gram": 1000,
+    "kilogram": 1,
+    "pound": 2.205,
+    "ounce": 35.27, 
+}
 
 
 
@@ -212,16 +218,44 @@ class Convert
         }
     }
 
+    conversionRatioToKg = {
+        "gram": 0.001,
+        "kilogram": 1,
+        "pound": 0.454,
+        "ounce": 0.02834952, 
+    }
+
+    static convertWeight(amount, chosenUnit, to) {
+        let result;
+
+        units.forEach(unit => {
+            if (chosenUnit === unit) {
+                result = amount * (1 / conversionRatioToKg[unit]);
+            }
+        });
+
+        units.forEach(unit => {
+            if (to === unit) {
+                result = result * conversionRatioToKg[unit];
+            }
+        });
+
+        return result;
+    }
+
     static getConversionResults(chosenUnit, chosenAmount) {
         const conversionResults = {
             "from": chosenUnit,
             "amount": chosenAmount,
             "results": {},
         };
+
         const conversionMethod = Convert.getConversionMethod(chosenUnit);
         units.forEach(unit => {
-            conversionResults["results"][unit] = conversionMethod(chosenAmount, unit);
+            // conversionResults["results"][unit] = conversionMethod(chosenAmount, unit);
+            conversionResults["results"][unit] = Convert.convertWeight(chosenAmount, chosenUnit, unit);
         });
+        console.log(conversionResults);
         return conversionResults;
     }
 }
@@ -232,6 +266,7 @@ class Event
     static pageLoad() {
         Init.createHTML(units);
         UI.setUnit(Storage.getUnit());
+        // Convert.convertWeight(1, "kilogram", "pound");
     }
 
     static saveUnit() {
