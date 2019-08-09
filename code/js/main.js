@@ -8,7 +8,7 @@ const selectUnit = document.querySelector("#unit-list-menu");
 const amount = document.querySelector("#amount");
 const conversionInfo = document.querySelector("#conversion-info");
 const conversionWrapper = document.querySelector("#conversion-wrapper");
-const conversionResultBoxes = document.querySelectorAll(".conversion-box");
+let conversionResultBoxes; // Gets initialized in Init class
 
 
 
@@ -22,15 +22,24 @@ const units = ["kilogram", "gram", "pound", "ounce"].sort();
 
 // ================== Classes ================== //
 
+class Helper
+{
+    static capitalizeWord(word) {
+        return word[0].toUpperCase() + word.substring(1);
+    }
+}
+
+
 class Init
 /*
 Creates those parts of the HTML that are dependent on what units are available
 so that the HTML-file doesn't have to be updated on multiple places when ned weight units are added. 
 */
 {
-    static setHTML(units) {
+    static createHTML(units) {
         Init.createUnitList(units);
         Init.createUnitChoiceList(units);
+        Init.createResultBoxes(units);
     }
 
     static createUnitList(units) {
@@ -51,13 +60,24 @@ so that the HTML-file doesn't have to be updated on multiple places when ned wei
             selectUnit.appendChild(option);
         });
     }
-}
 
+    static createResultBoxes(units) {
+        units.forEach(unit => {
+            const div = document.createElement("div");
+            div.classList.add("conversion-box");
+            
+            const h3 = document.createElement("h3");
+            h3.setAttribute("data-unit", unit);
+            div.appendChild(h3);
+            
+            const p = document.createElement("p");
+            p.classList.add("conversion-result");
+            p.setAttribute("data-unit", unit);
+            div.appendChild(p);
 
-class Helper
-{
-    static capitalizeWord(word) {
-        return word[0].toUpperCase() + word.substring(1);
+            conversionWrapper.appendChild(div);
+            conversionResultBoxes = document.querySelectorAll(".conversion-box");
+        });
     }
 }
 
@@ -210,7 +230,7 @@ class Convert
 class Event
 {
     static pageLoad() {
-        Init.setHTML(units);
+        Init.createHTML(units);
         UI.setUnit(Storage.getUnit());
     }
 
