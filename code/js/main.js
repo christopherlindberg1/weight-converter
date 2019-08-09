@@ -4,7 +4,7 @@
 const messageDiv = document.querySelector("#message");
 const introInfo = document.querySelector("#intro-info");
 const form = document.querySelector("#form");
-const selectUnit = document.querySelector("#unit");
+const selectUnit = document.querySelector("#unit-list-menu");
 const amount = document.querySelector("#amount");
 const conversionInfo = document.querySelector("#conversion-info");
 const conversionWrapper = document.querySelector("#conversion-wrapper");
@@ -30,20 +30,34 @@ so that the HTML-file doesn't have to be updated on multiple places when ned wei
 {
     static setHTML(units) {
         Init.createUnitList(units);
+        Init.createUnitChoiceList(units);
     }
 
     static createUnitList(units) {
         const ul = document.createElement("ul");
         units.forEach(unit => {
             const li = document.createElement("li");
-            li.textContent = unit;
+            li.textContent = Helper.capitalizeWord(unit);
             ul.appendChild(li);
         });
         introInfo.appendChild(ul);
     }
 
     static createUnitChoiceList(units) {
+        units.forEach(unit => {
+            const option = document.createElement("option");
+            option.setAttribute("value", unit);
+            option.textContent = Helper.capitalizeWord(unit);
+            selectUnit.appendChild(option);
+        });
+    }
+}
 
+
+class Helper
+{
+    static capitalizeWord(word) {
+        return word[0].toUpperCase() + word.substring(1);
     }
 }
 
