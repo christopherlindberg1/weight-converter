@@ -94,7 +94,8 @@ class UI
     static showConversionResults(conversionResults) {
         conversionInfo.textContent = `${conversionResults.amount} ${conversionResults.from} is equal to`;
         conversionResultBoxes.forEach(box => {
-            box.children[0].innerHTML = `${conversionResults.results[box.children[0].id]} ${box.children[0].id}`;
+            box.children[0].innerHTML = `<h3>${box.children[0].getAttribute("data-unit")}</h3>`;
+            box.children[1].innerHTML = `${conversionResults.results[box.children[0].getAttribute("data-unit")]}`;
         });
         conversionWrapper.style.display = "block";
     }
@@ -192,36 +193,48 @@ class Convert
 }
 
 
+class Event
+{
+    static pageLoad() {
+        Init.setHTML(units);
+        UI.setUnit(Storage.getUnit());
+    }
+
+    static saveUnit() {
+        Storage.setUnit(UI.getUnit());
+    }
+
+    static preventFormSubmit(e) {
+        e.preventDefault();
+    }
+
+    static convertWeight() {
+        if (amount.value === "") {
+            UI.hideContent();
+            return;
+        }
+        const chosenUnit = UI.getUnit();
+        const chosenAmount = UI.getAmount();
+        const conversionResults = Convert.getConversionResults(chosenUnit, chosenAmount);
+        UI.showConversionResults(conversionResults);
+    }
+}
+
+
 
 // ================== Events ================== //
 
 // Get last used unit on page load
-document.addEventListener("DOMContentLoaded", () => {
-    Init.setHTML(units);
-    UI.setUnit(Storage.getUnit());
-});
-
+document.addEventListener("DOMContentLoaded", Event.pageLoad);
 
 // Save last used unit
-selectUnit.addEventListener("change", () => {
-    Storage.setUnit(UI.getUnit());
-});
-
+selectUnit.addEventListener("change", Event.saveUnit);
 
 // Prevent form from submitting
-form.addEventListener("submit", e => {
-    e.preventDefault();
-});
+form.addEventListener("submit", Event.preventFormSubmit);
 
+// Convert weight when amount is updated
+amount.addEventListener("input", Event.convertWeight);
 
-// Show weight conversion
-amount.addEventListener("input", () => {
-    if (amount.value === "") {
-        UI.hideContent();
-        return;
-    }
-    const chosenUnit = UI.getUnit();
-    const chosenAmount = UI.getAmount();
-    const conversionResults = Convert.getConversionResults(chosenUnit, chosenAmount);
-    UI.showConversionResults(conversionResults);
-});
+// Convert weight when unit is changed
+selectUnit.addEventListener("change", Event.convertWeight);
