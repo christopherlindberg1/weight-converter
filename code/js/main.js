@@ -2,6 +2,7 @@
 
 // ================== UI elements ================== //
 const messageDiv = document.querySelector("#message");
+const introInfo = document.querySelector("#intro-info");
 const form = document.querySelector("#form");
 const selectUnit = document.querySelector("#unit");
 const amount = document.querySelector("#amount");
@@ -13,12 +14,39 @@ const conversionResultBoxes = document.querySelectorAll(".conversion-box");
 
 
 // ================== Helper elements ================== //
-const units = ["kilogram", "gram", "pound", "ounce"];
+const units = ["kilogram", "gram", "pound", "ounce"].sort();
+
 
 
 
 
 // ================== Classes ================== //
+
+class Init
+/*
+Creates those parts of the HTML that are dependent on what units are available
+so that the HTML-file doesn't have to be updated on multiple places when ned weight units are added. 
+*/
+{
+    static setHTML(units) {
+        Init.createUnitList(units);
+    }
+
+    static createUnitList(units) {
+        const ul = document.createElement("ul");
+        units.forEach(unit => {
+            const li = document.createElement("li");
+            li.textContent = unit;
+            ul.appendChild(li);
+        });
+        introInfo.appendChild(ul);
+    }
+
+    static createUnitChoiceList(units) {
+
+    }
+}
+
 
 class Storage
 {
@@ -31,7 +59,7 @@ class Storage
     }
 
     static getSorting() {
-        return window.localStorage.getItem("sorting") === null ? "alpha" : JSON.parse(window.localStorage.getItem("sorting"));
+        return window.localStorage.getItem("sorting") === null ? "alphabetically" : JSON.parse(window.localStorage.getItem("sorting"));
     }
 
     static setSorting(sorting) {
@@ -169,6 +197,7 @@ class Convert
 
 // Get last used unit on page load
 document.addEventListener("DOMContentLoaded", () => {
+    Init.setHTML(units);
     UI.setUnit(Storage.getUnit());
 });
 
