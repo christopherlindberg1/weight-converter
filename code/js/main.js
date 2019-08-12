@@ -19,9 +19,8 @@ const conversionRatioToKg = {
     "gram": 1000,
     "kilogram": 1,
     "pound": 2.205,
-    "ounce": 35.27, 
+    "ounce": 35.27,
 }
-
 
 
 
@@ -148,83 +147,75 @@ class UI
 
 class Convert
 {
-    static kgTo(amount, unit) {
-        if (unit === "kilogram") {
-            return amount;
-        } else if (unit === "gram") {
-            return (amount * 1000).toFixed(4);
-        } else if (unit === "pound") {
-            return (amount * 2.2).toFixed(4);
-        } else if (unit === "ounce") {
-            return (amount * 35.27396).toFixed(4);
-        } else {
-            throw "Could not complete conversion from kilogram"
-        }
-    }
+    // static kgTo(amount, unit) {
+    //     if (unit === "kilogram") {
+    //         return amount;
+    //     } else if (unit === "gram") {
+    //         return (amount * 1000).toFixed(4);
+    //     } else if (unit === "pound") {
+    //         return (amount * 2.2).toFixed(4);
+    //     } else if (unit === "ounce") {
+    //         return (amount * 35.27396).toFixed(4);
+    //     } else {
+    //         throw "Could not complete conversion from kilogram"
+    //     }
+    // }
 
-    static gramTo(amount, unit) {
-        if (unit === "kilogram") {
-            return (amount * 0.001).toFixed(4);
-        } else if (unit === "gram") {
-            return amount;
-        } else if (unit === "pound") {
-            return (amount * 0.0022).toFixed(4);
-        } else if (unit === "ounce") {
-            return (amount * 0.03527396).toFixed(4);
-        } else {
-            throw "Could not complete conversion from gram"
-        }
-    }
+    // static gramTo(amount, unit) {
+    //     if (unit === "kilogram") {
+    //         return (amount * 0.001).toFixed(4);
+    //     } else if (unit === "gram") {
+    //         return amount;
+    //     } else if (unit === "pound") {
+    //         return (amount * 0.0022).toFixed(4);
+    //     } else if (unit === "ounce") {
+    //         return (amount * 0.03527396).toFixed(4);
+    //     } else {
+    //         throw "Could not complete conversion from gram"
+    //     }
+    // }
 
-    static poundTo(amount, unit) {
-        if (unit === "kilogram") {
-            return (amount * 0.4535924).toFixed(3);
-        } else if (unit === "gram") {
-            return (amount * 453.5924018).toFixed(2);
-        } else if (unit === "pound") {
-            return amount;
-        } else if (unit === "ounce") {
-            return (amount * 16).toFixed(3);
-        } else {
-            throw "Could not complete conversion from pound"
-        }
-    }
+    // static poundTo(amount, unit) {
+    //     if (unit === "kilogram") {
+    //         return (amount * 0.4535924).toFixed(3);
+    //     } else if (unit === "gram") {
+    //         return (amount * 453.5924018).toFixed(2);
+    //     } else if (unit === "pound") {
+    //         return amount;
+    //     } else if (unit === "ounce") {
+    //         return (amount * 16).toFixed(3);
+    //     } else {
+    //         throw "Could not complete conversion from pound"
+    //     }
+    // }
 
-    static ounceTo(amount, unit) {
-        if (unit === "kilogram") {
-            return (amount * 0.02834952).toFixed(4);
-        } else if (unit === "gram") {
-            return (amount * 28.34952).toFixed(3);
-        } else if (unit === "pound") {
-            return (amount * 0.0625).toFixed(4);
-        } else if (unit === "ounce") {
-            return amount;
-        } else {
-            throw "Could not complete conversion from ounce"
-        }
-    }
+    // static ounceTo(amount, unit) {
+    //     if (unit === "kilogram") {
+    //         return (amount * 0.02834952).toFixed(4);
+    //     } else if (unit === "gram") {
+    //         return (amount * 28.34952).toFixed(3);
+    //     } else if (unit === "pound") {
+    //         return (amount * 0.0625).toFixed(4);
+    //     } else if (unit === "ounce") {
+    //         return amount;
+    //     } else {
+    //         throw "Could not complete conversion from ounce"
+    //     }
+    // }
 
-    static getConversionMethod(chosenUnit) {
-        if (chosenUnit === "kilogram") {
-            return Convert.kgTo;
-        } else if (chosenUnit === "gram") {
-            return Convert.gramTo;
-        } else if (chosenUnit === "pound") {
-            return Convert.poundTo;
-        } else if (chosenUnit === "ounce") {
-            return Convert.ounceTo;
-        } else {
-            throw "Could not choose a conversion mehtod";
-        }
-    }
-
-    // Why don't i get the same effect with these values in the global variable at row 18?
-    conversionRatioToKg = {
-        "gram": 0.001,
-        "kilogram": 1,
-        "pound": 0.454,
-        "ounce": 0.02834952, 
-    }
+    // static getConversionMethod(chosenUnit) {
+    //     if (chosenUnit === "kilogram") {
+    //         return Convert.kgTo;
+    //     } else if (chosenUnit === "gram") {
+    //         return Convert.gramTo;
+    //     } else if (chosenUnit === "pound") {
+    //         return Convert.poundTo;
+    //     } else if (chosenUnit === "ounce") {
+    //         return Convert.ounceTo;
+    //     } else {
+    //         throw "Could not choose a conversion mehtod";
+    //     }
+    // }
 
     static convertWeight(amount, chosenUnit, to) {
         let result;
@@ -251,9 +242,7 @@ class Convert
             "results": {},
         };
 
-        const conversionMethod = Convert.getConversionMethod(chosenUnit);
         units.forEach(unit => {
-            // conversionResults["results"][unit] = conversionMethod(chosenAmount, unit);
             conversionResults["results"][unit] = Convert.convertWeight(chosenAmount, chosenUnit, unit);
         });
         console.log(conversionResults);
@@ -267,7 +256,6 @@ class Event
     static pageLoad() {
         Init.createHTML(units);
         UI.setUnit(Storage.getUnit());
-        // Convert.convertWeight(1, "kilogram", "pound");
     }
 
     static saveUnit() {
