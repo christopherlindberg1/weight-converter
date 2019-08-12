@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Weight converter</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
@@ -14,21 +14,17 @@
         <div class="container">
             <div id="message"></div>
             <h1>Weight Converter</h1>
-            <p>Here you can convert weight between the following units</p>
-            <ul>
-                <li>Kilogram</li>
-                <li>Gram</li>
-                <li>Pound</li>
-                <li>Ounce</li>
-            </ul>
+            <article id="intro-info">
+                <p>Here you can convert weight between the following units</p>
+            </article>
+            
             <form id="form">
                 <div class="form-element">
                     <label for="unit">Convert from </label>
-                    <select name="unit" id="unit">
-                        <option value="kilogram">Kilogram</option>
-                        <option value="gram">Gram</option>
-                        <option value="pound">Pound</option>
-                        <option value="ounce">Ounce</option>
+                    <select name="unit" id="unit-list-menu">
+                        <!-- <option value="kilogram">Kilogram</option>
+                            ...
+                         -->
                     </select>
                 </div>
                 <div class="form-element">
@@ -38,28 +34,22 @@
                 <div class="form-element">
                     <label for="unit">Sort by</label>
                     <select name="unit" id="unit">
-                        <option value="kilogram">Alphabetically</option>
-                        <option value="gram">Alphabetically reversed</option>
-                        <option value="pound">Biggest unit</option>
-                        <option value="ounce">Smallest unit</option>
+                        <option value="alphabetically">Alphabetically</option>
+                        <option value="alphabetically-reversed">Alphabetically reversed</option>
+                        <option value="biggest">Biggest unit</option>
+                        <option value="smallest">Smallest unit</option>
                     </select>
                 </div>
             </form>
 
             <div id="conversion-wrapper">
                 <p id="conversion-info"></p>
-                <div class="conversion-box">
-                    <p class="conversion-result" id="kilogram"></p>
+                <!-- <div class="conversion-box">
+                    <h3 data-unit="kilogram"></h3>
+                    <p class="conversion-result" data-unit="kilogram"></p>
                 </div>
-                <div class="conversion-box">
-                    <p class="conversion-result" id="gram"></p>
-                </div>
-                <div class="conversion-box">
-                    <p class="conversion-result" id="pound"></p>
-                </div>
-                <div class="conversion-box">
-                    <p class="conversion-result" id="ounce"></p>
-                </div>
+                    ...
+                 -->
             </div>
         </div>
     </section>
