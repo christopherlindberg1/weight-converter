@@ -218,6 +218,7 @@ class Convert
         }
     }
 
+    // Why don't i get the same effect with these values in the global variable at row 18?
     conversionRatioToKg = {
         "gram": 0.001,
         "kilogram": 1,
