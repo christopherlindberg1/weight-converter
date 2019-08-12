@@ -15,13 +15,13 @@ Structuring the architecture in a loosly coupled way. I tried to implement the m
 ## Todo
 Must:
 * Add functionality for filtering results
-* Better style for results
+* ~~Better style for results~~
 * Host website live
 
 Should:
-* Refactor Storage class. Should a more dynamic method be used to set values?
-* Improving architecture so that JS and HTML doesn't have to bee hardcoded if new weight units are added. Ideally new units should only be added in one place.
+* ~~Refactor Storage class. Should a more dynamic method be used to set values? **No, easier to consume methods, more explicit**~~
+* ~~Improving architecture so that JS and HTML doesn't have to bee hardcoded if new weight units are added. Ideally new units should only be added in one place.~~
 
 Want:
 * Better exception handling. Throw more exceptions where needed to make sure that the script stops as soon as something isn't as excpected (e.g. faulty input to method).
-* Can the convert-methods in the Convert class be structured in a better way? The amount of code grows exponentially to the amount of units atm.
+* Can the convert-methods in the Convert class be structured in a better way? The amount of code grows exponentially to the amount of units atm. **Done. is this more inefficient?**
