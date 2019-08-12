@@ -72,6 +72,7 @@ so that the HTML-file doesn't have to be updated on multiple places when ned wei
             div.classList.add("conversion-box");
             
             const h3 = document.createElement("h3");
+            h3.classList.add("unit-heading");
             h3.setAttribute("data-unit", unit);
             div.appendChild(h3);
             
@@ -133,7 +134,7 @@ class UI
     static showConversionResults(conversionResults) {
         conversionInfo.textContent = `${conversionResults.amount} ${conversionResults.from} is equal to`;
         conversionResultBoxes.forEach(box => {
-            box.children[0].innerHTML = `<h3>${box.children[0].getAttribute("data-unit")}</h3>`;
+            box.children[0].innerHTML = `${Helper.capitalizeWord(box.children[0].getAttribute("data-unit"))}:`;
             box.children[1].innerHTML = `${conversionResults.results[box.children[0].getAttribute("data-unit")]}`;
         });
         conversionWrapper.style.display = "block";

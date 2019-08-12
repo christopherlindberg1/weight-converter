@@ -69,3 +69,13 @@ input, select {
 .conversion-box:nth-of-type(4n + 3) {
     background-color: orange;
 }
+
+.unit-heading {
+    margin: 0;
+    margin-right: 0.25rem;
+    display: inline-block;
+}
+
+.conversion-result {
+    display: inline-block;
+}
