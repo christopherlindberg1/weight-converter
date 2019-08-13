@@ -14,13 +14,12 @@ let conversionResultBoxes; // Gets initialized in Init class
 
 
 // ================== Helper elements ================== //
-const units = ["kilogram", "gram", "pound", "ounce", "ton"].sort();
+const units = ["kilogram", "gram", "pound", "ounce"].sort();
 const conversionRatioToKg = {
     "gram": 1000,
     "kilogram": 1,
     "pound": 2.205,
     "ounce": 35.27,
-    "ton": 0.001,
 }
 
 
@@ -208,7 +207,6 @@ class Event
         UI.showConversionResults(conversionResults);
     }
 }
-
 
 
 
