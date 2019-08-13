@@ -24,4 +24,4 @@ Should:
 
 Want:
 * Better exception handling. Throw more exceptions where needed to make sure that the script stops as soon as something isn't as excpected (e.g. faulty input to method).
-* Can the convert-methods in the Convert class be structured in a better way? The amount of code grows exponentially to the amount of units atm. **Done. is this more inefficient?**
+* ~~Can the convert-methods in the Convert class be structured in a better way? The amount of code grows exponentially to the amount of units atm. **Done. Just as efficient performance wise. Used performance.now() to time execution**~~
