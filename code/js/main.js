@@ -14,12 +14,22 @@ let conversionResultBoxes; // Gets initialized in Init class
 
 
 // ================== Helper elements ================== //
-const units = ["kilogram", "gram", "pound", "ounce"].sort();
+
+/*
+    You only have to add new units and their corresponding weight ratio to kg
+    in the units variable and in the conversionRatioToKg variable.
+    All HTML and CSS, and calclations will be rendered based on the existing
+    units in these variables.
+*/
+const units = ["kilogram", "gram", "pound", "ounce", "ton", "stone"].sort();
 const conversionRatioToKg = {
+    // Should have same precission for all units
     "gram": 1000,
     "kilogram": 1,
     "pound": 2.205,
     "ounce": 35.27,
+    "ton": 0.001,
+    "stone": 0.157473,
 }
 
 
