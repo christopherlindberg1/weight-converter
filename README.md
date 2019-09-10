@@ -23,5 +23,4 @@ Should:
 * ~~Improving architecture so that JS and HTML doesn't have to bee hardcoded if new weight units are added. Ideally new units should only be added in one place.~~
 
 Want:
-* Better exception handling. Throw more exceptions where needed to make sure that the script stops as soon as something isn't as excpected (e.g. faulty input to method).
 * ~~Can the convert-methods in the Convert class be structured in a better way? The amount of code grows exponentially to the amount of units atm. **Done. Just as efficient performance wise. Used performance.now() to time execution**~~
